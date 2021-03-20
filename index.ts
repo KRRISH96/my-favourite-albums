@@ -1,13 +1,17 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
+import { PrismaClient } from '@prisma/client';
 
 const app = express();
+const prisma = new PrismaClient();
  
 app.use(bodyParser.json());
 
 
 app.get('/', async (_req, res) => {
-  res.json({ ok: true });
+  const albums = await prisma.album.findMany();
+
+  res.json({ albums });
 })
 
 
