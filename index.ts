@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import * as bodyParser from 'body-parser';
 import { PrismaClient } from '@prisma/client';
 
@@ -39,6 +40,14 @@ app.post('/api/new_album', async (req, res) => {
     res.status(400).json({ error: "Sorry, Unabel to create an album at the moment! Please try again later" });
   }
 })
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build/')));
+
+  app.get('*', function(_req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 
 const PORT = process.env.PORT || 4000
