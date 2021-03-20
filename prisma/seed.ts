@@ -4,16 +4,16 @@ const prisma = new PrismaClient();
 import { artists } from './artistsSeed';
 
 async function main() {
-  const alice = await prisma.artist.create({
-    data: {
-      name: "TODO",
-      albums: {
-        create: {
-          title: 'Check out Prisma with Next.js'
+  for (let { name, albums } of artists) {
+    await prisma.artist.create({
+      data: {
+        name,
+        albums: {
+          create: albums,
         },
       },
-    },
-  })
+    })
+  }
 }
 
 main()
