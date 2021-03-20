@@ -8,12 +8,6 @@ interface ArtistData {
   id: number;
   name: string;
 }
-
-interface PostData {
-  title: string;
-  artistId: number;
-}
-
 interface SelectOption {
   label: string;
   value: number;
@@ -36,9 +30,13 @@ function AlbumForm() {
     null
   );
   const [title, setTitle] = useState<string>('');
+  const [formErrorMessage, setFormErrorMessage] = useState('');
+  const [formLoading, setFormLoading] = useState(false);
 
   const createAlbum = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setFormLoading(true);
 
     const res = await fetch('/api/new_album', {
       method: 'POST',
@@ -51,46 +49,49 @@ function AlbumForm() {
     if (res.status === 200) {
       window.location.href = '/';
     } else {
-      console.log('error');
+      const { error } = await res.json();
+      setFormErrorMessage(error);
+      setFormLoading(false);
     }
   };
 
   if (error) {
     return <h2 className="error">{error}</h2>;
   }
+  const disableFields = loading || formLoading;
 
   return (
     <div className="album-form-page">
       <h2>Create New Album</h2>
-      <form onSubmit={createAlbum} className="card">
+      <form onSubmit={createAlbum} className="card album-form">
         <div className="form-row">
-          <label htmlFor="album-title">Title</label>
           <input
             type="text"
-            id="album-title"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
-            placeholder="Enter Album Name..."
-            disabled={loading}
+            placeholder="Enter Album Title..."
+            disabled={disableFields}
+            required
           />
         </div>
         <div className="form-row">
-          <label htmlFor="artist">Artist</label>
           <Select
-            id="artist"
             className="react-select-container"
             classNamePrefix="react-select"
             name="selectedArtist"
-            placeholder="Select Artist..."
+            placeholder={loading ? 'Loading Artists...' : 'Select Artist...'}
             options={artists !== null ? constructSelectOptions(artists) : []}
             value={selectedArtist}
             onChange={option => setSelectedArtist(option)}
-            isDisabled={loading}
+            isDisabled={disableFields}
             isClearable={false}
             isSearchable
           />
         </div>
-        <button type="submit">Save</button>
+        {!!formErrorMessage && <p className="error">{formErrorMessage}</p>}
+        <button type="submit" disabled={disableFields}>
+          {formLoading ? 'Saving...' : 'Save'}
+        </button>
       </form>
     </div>
   );

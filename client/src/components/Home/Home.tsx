@@ -32,7 +32,9 @@ function Home() {
   return (
     <div className="home-page">
       <h2>My Albums</h2>
-      <Link to="/new_album">Add Abum</Link>
+      <div className="album-link">
+        <Link to="/new_album">{'+ Add Abum'}</Link>
+      </div>
       {loading && <span>Loading...</span>}
       {albums !== null && <AlbumsTable albums={albums} />}
     </div>
