@@ -9,7 +9,9 @@ app.use(bodyParser.json());
 
 
 app.get('/api', async (_req, res) => {
-  const albums = await prisma.album.findMany();
+  const albums = await prisma.album.findMany({
+    include: { artist: true }
+  });
 
   res.json({ albums });
 });
