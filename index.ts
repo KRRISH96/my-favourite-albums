@@ -17,6 +17,12 @@ app.get('/api', async (_req, res) => {
   res.json(albums);
 });
 
+app.get('/api/artists', async (_req, res) => {
+  const artists = await prisma.artist.findMany();
+
+  res.json(artists);
+});
+
 app.post('/api/new_album', async (req, res) => {
   try {
     const { title, artistId } = req.body;

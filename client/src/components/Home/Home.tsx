@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import AlbumsTable from './AlbumsTable';
 import './homeStyles.scss';
@@ -31,6 +32,7 @@ function Home() {
   return (
     <div className="home-page">
       <h2>My Albums</h2>
+      <Link to="/new_album">Add Abum</Link>
       {loading && <span>Loading...</span>}
       {albums !== null && <AlbumsTable albums={albums} />}
     </div>
