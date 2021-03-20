@@ -6,3 +6,4 @@ deploy:
   api_key: $HEROKU_KEY
   app:
     main: my-favourite-albums
+script: 'true'
