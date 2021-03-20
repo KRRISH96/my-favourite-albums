@@ -14,7 +14,7 @@ app.get('/api', async (_req, res) => {
     include: { artist: true }
   });
 
-  res.json({ albums });
+  res.json(albums);
 });
 
 app.post('/api/new_album', async (req, res) => {
