@@ -27,7 +27,7 @@
     "start:server": "nodemon index.ts",
     "start:client": "cd client && yarn start",
     "start:app": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\"",
-    "heroku-postbuild": "tsc && cd client && yarn && yarn run build"
+    "build": "tsc && cd client && yarn && yarn run build"
   },
   "engines": {
     "node": ">=10.x",
