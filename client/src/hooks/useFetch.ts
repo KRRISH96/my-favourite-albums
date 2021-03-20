@@ -11,14 +11,16 @@ interface Response<T> {
 }
 
 const DEFAULT_RESPONSE_STATE = {
-  data: null
+  data: null,
 };
 
 /**
  * @param endpoint {String} endpoint to fetch data from.
  */
 export function useFetch<T>(endpoint: string): FetchResponseData<T> {
-  const [response, setResponse] = React.useState<Response<T>>(DEFAULT_RESPONSE_STATE);
+  const [response, setResponse] = React.useState<Response<T>>(
+    DEFAULT_RESPONSE_STATE
+  );
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
 
@@ -35,7 +37,7 @@ export function useFetch<T>(endpoint: string): FetchResponseData<T> {
         const responseJson = await res.json();
 
         if (!didCancelFetch) {
-          const updatedResponse: Response<T> = { data: responseJson }
+          const updatedResponse: Response<T> = { data: responseJson };
 
           setResponse(updatedResponse);
         }
