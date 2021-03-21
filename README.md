@@ -68,7 +68,7 @@ Request
 curl --location --request POST 'https://my-favourite-albums.herokuapp.com/api' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"title": "Album Title",
+"title": "New Album Title",
 "artistId": 100
 }'
 ```
@@ -77,7 +77,7 @@ Response
 
 ```
 # On Status 200
-{ id: 100, title: "New Album", ... }
+{ id: 112, title: "New Album Title", ... }
 ```
 
 ```
