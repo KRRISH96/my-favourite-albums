@@ -70,7 +70,7 @@ function AlbumForm() {
             value={title}
             onChange={({ target }) => setTitle(target.value)}
             placeholder="Enter Album Title..."
-            disabled={disableFields}
+            disabled={formLoading}
             required
           />
         </div>
