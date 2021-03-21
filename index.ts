@@ -44,7 +44,7 @@ app.post('/api/new_album', async (req, res) => {
     console.log(e); // Report to Error Service, ex: Airbrake
     res.status(400).json({
       error:
-        'Sorry, Unabel to create an album at the moment! Please try again later',
+        'Sorry, Unable to create an album at the moment! Please try again later',
     });
   }
 });
