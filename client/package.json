@@ -1,5 +1,6 @@
 {
   "name": "client",
+  "description": "Frontend for My Favourite Albums",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
