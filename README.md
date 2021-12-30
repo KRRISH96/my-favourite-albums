@@ -5,12 +5,7 @@
 A [TypeScript](https://www.typescriptlang.org/) Flavoured [Express](https://expressjs.com/) + [React](https://reactjs.org/) + [Prisma](https://prisma.io/) + [PostgreSQL](https://www.postgresql.org/) FullStack App to Create and Store Your Favourite Albums.
 <br></br>
 
-## 🔗 Live
-
-<hr></hr>
-
-[Deployed on Heroku](https://my-favourite-albums.herokuapp.com/)
-<br></br>
+> Used to be deployed on Heroku. But, I am on free tier and to accomodate other projects I took this down as this is only a sample app.
 
 ## 🛠 API
 
